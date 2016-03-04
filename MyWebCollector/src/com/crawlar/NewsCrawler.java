@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-import org.jsoup.nodes.Document;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatums;
@@ -13,6 +12,7 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.plugin.berkeley.BreadthCrawler;
 
 import com.jdbc.JDBCHelper;
+import com.sina.sae.util.SaeUserInfo;
 
 /**
  *
@@ -65,6 +65,8 @@ public class NewsCrawler extends BreadthCrawler {
 					e.printStackTrace();
 				}
     		}else{
+    			String username = SaeUserInfo.getAccessKey();
+    			String password = SaeUserInfo.getSecretKey();
     			jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
 			            "jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=utf8",
 			            "root", "root", 5, 30);
